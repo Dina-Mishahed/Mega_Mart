@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../../../controller/auth/signup_controller.dart';
+import '../../../core/constants/color.dart';
 import '../../../core/constants/image_assets.dart';
 import '../../../core/functions/valid_input.dart';
 import '../../widgets/auth/Custon_sign_with_phonr_email.dart';
@@ -52,12 +53,23 @@ class SignupPage extends StatelessWidget {
                         key: controller.formstate,
                         child: Column(
                           children: [
-                            CustomConstText(text: "Userame"),
+                            CustomConstText(text: "First Name"),
                             CustomTextField(
                                 onSaveFunc: (val) {
-                                  controller.userName = val!;
+                                  controller.firstName = val!;
                                 },
-                                hintText: "Enter your username",
+                                hintText: "Enter your first name",
+                                valid: (val) => validInput(val!, "username"),
+                                type: TextInputType.name),
+                            const SizedBox(
+                              height: 14,
+                            ),
+                            CustomConstText(text: "Last Name"),
+                            CustomTextField(
+                                onSaveFunc: (val) {
+                                  controller.lastName = val!;
+                                },
+                                hintText: "Enter your last name",
                                 valid: (val) => validInput(val!, "username"),
                                 type: TextInputType.name),
                             const SizedBox(
@@ -75,13 +87,50 @@ class SignupPage extends StatelessWidget {
                               height: 14,
                             ),
                             CustomConstText(text: "Phone Number"),
-                            CustomTextField(
-                                onSaveFunc: (val) {
-                                  controller.phone = val!;
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: AppColor.grey2,
+                                  )),
+                              child: InternationalPhoneNumberInput(
+                                onInputChanged: (number) {},
+                                onInputValidated: (bool value) {
+                                  //print(value);
                                 },
-                                hintText: "Enter Your Phone Number",
-                                valid: (val) => validInput(val!, "phone"),
-                                type: TextInputType.phone),
+                                selectorConfig: SelectorConfig(
+                                  showFlags: false,
+                                  selectorType: PhoneInputSelectorType.DROPDOWN,
+                                ),
+                                autoValidateMode: AutovalidateMode.always,
+                                selectorTextStyle:
+                                    TextStyle(color: Colors.black),
+                                inputDecoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Enter Your Phone Number",
+                                  hintStyle: TextStyle(
+                                      color: AppColor.grey2,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16),
+                                ),
+                                //initialValue: number,
+                                //textFieldController: controller.phone.toString(),
+                                formatInput: false,
+                                keyboardType: TextInputType.numberWithOptions(
+                                    signed: true, decimal: true),
+                                onSaved: (PhoneNumber number) {
+                                  controller.phone = number.toString();
+                                  print('On Saved: $number');
+                                },
+                              ),
+                            ),
+                            // CustomTextField(
+                            //     onSaveFunc: (val) {
+                            //       controller.phone = val!;
+                            //     },
+                            //     hintText: "Enter Your Phone Number",
+                            //     valid: (val) => validInput(val!, "phone"),
+                            //     type: TextInputType.phone),
                             const SizedBox(
                               height: 14,
                             ),

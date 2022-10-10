@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' ;
 import 'package:mega_market/core/constants/routes.dart';
 import 'package:mega_market/data/models/user_model.dart';
 
@@ -21,7 +21,9 @@ class SignUpControllerImp extends SignUpController {
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isshowpassword = true;
-  late String userName, email, phone, password;
+  late String? phone;
+  late String firstName, lastName, email, password;
+  late bool isEmailVerified;
 
   showPassword() {
     isshowpassword = !isshowpassword;
@@ -54,14 +56,16 @@ class SignUpControllerImp extends SignUpController {
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
       formstate.currentState!.save();
-      print("valid");
       try {
-        await _auth
+         await _auth
             .createUserWithEmailAndPassword(email: email, password: password)
             .then((user) async {
+           sendverificationEmail();
+          //print("user ==> $user");
           saveUser(user);
         });
-
+        // print("$user");
+        // await user.user.sendEmailVerification();
         Get.offAllNamed(AppRoute.home);
       } on FirebaseAuthException catch (e) {
         print(e.message);
@@ -74,20 +78,47 @@ class SignUpControllerImp extends SignUpController {
   }
 
   void saveUser(UserCredential user) async {
-    if (userName == "") {
-      await FirestroreUser().addUserToFireStore(UserModel(
-        user.user!.uid,
-        user.user!.email.toString(),
-        user.user!.displayName.toString(),
-        "",
-      ));
-    } else {
-      await FirestroreUser().addUserToFireStore(UserModel(
-        user.user!.uid,
-        user.user!.email.toString(),
-        userName,
-        phone,
-      ));
+    isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
+    await FirestroreUser().addUserToFireStore(UserModel(
+      user.user!.uid,
+      user.user!.email.toString(),
+      firstName,
+      lastName,
+      phone.toString(),
+      "",
+      isEmailVerified,
+    ));
+    print(" ==> $isEmailVerified");
+    if (!isEmailVerified) {
+      sendverificationEmail();
     }
   }
+
+  Future sendverificationEmail() async {
+    try {
+      await _auth.currentUser!.sendEmailVerification();
+      print("please verify your Email");
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    }
+  }
+//   if (firstName == "") {
+//     await FirestroreUser().addUserToFireStore(UserModel(
+//       user.user!.uid,
+//       user.user!.email.toString(),
+//       user.user!.displayName.toString(),
+//       user.user!.phoneNumber.toString(),
+//       "",
+//     ));
+//   } else {
+//     await FirestroreUser().addUserToFireStore(UserModel(
+//       user.user!.uid,
+//       user.user!.email.toString(),
+//       firstName,
+//       lastName,
+//       phone.toString(),
+//       "",
+//     ));
+//   }
+// }
 }

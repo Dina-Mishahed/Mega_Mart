@@ -1,9 +1,15 @@
 import 'dart:typed_data';
 
-class UserModel {
-  String userId = "", email = "", name = "", phone = "", pic = "";
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-  UserModel(this.userId, this.email, this.name, this.pic);
+class UserModel {
+  late String phone;
+
+  late String userId, email, firstName, lastName, pic;
+  bool isEmailVerified = false;
+
+  UserModel(this.userId, this.email, this.firstName, this.lastName, this.phone,
+      this.pic, this.isEmailVerified);
 
   UserModel.fromJson(Map<dynamic, dynamic> map) {
     if (map['userId'] == "") {
@@ -11,18 +17,22 @@ class UserModel {
     }
     userId = map['userId'];
     email = map['email'];
-    name = map['name'];
+    firstName = map['firstName'];
+    lastName = map['lastName'];
     phone = map['phone'];
     pic = map['pic'];
+    isEmailVerified = map['isEmailVerified'];
   }
 
   toJson() {
     return {
       'userId': userId,
       'email': email,
-      'name': name,
+      'firstName': firstName,
+      'lastName': lastName,
       'phone': phone,
       'pic': pic,
+      'isEmailVerified': isEmailVerified,
     };
   }
 }

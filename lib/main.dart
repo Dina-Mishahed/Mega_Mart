@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w300,
             ),
           ),
-          primarySwatch: Colors.deepPurple,
+          primarySwatch: Colors.deepOrange,//AppColor.primaryColor1,
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
             type: BottomNavigationBarType.fixed,
             selectedItemColor: AppColor.primaryColor,
@@ -58,8 +58,8 @@ class MyApp extends StatelessWidget {
             selectedIconTheme: IconThemeData(color: AppColor.primaryColor),
             elevation: 0.0,
           )),
-      //initialRoute: "/",
-      initialRoute: AppRoute.home,
+      initialRoute: "/",
+      //initialRoute: AppRoute.home,
       getPages: routes,
     );
   }

@@ -23,23 +23,68 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
     formstate.currentState!.save();
     if (formdata!.validate()) {
       print("val id");
-      await _auth
-          .sendPasswordResetEmail(email: email)
-          .then((value) {
-        print("sucess");
-      });
-      // .catchError((e) => _status = AuthExceptionHandler.handleAuthException(e));
+      resetPassword(email: email);
       Get.offAllNamed(AppRoute.optVerificationCodeEmail);
     } else {
       print("Not valid");
     }
     //Get.offAllNamed(AppRoute.optVerificationCodeEmail);
   }
+
+  Future resetPassword({required String email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email!);
+      Get.snackbar("Message",'Password reset email is sent');
+    } catch (e) {
+      Get.snackbar("Message",'Error resetting');
+    }
+    // await _auth
+    //     .sendPasswordResetEmail(email: email)
+    //     .then((value) => _status = AuthStatus.successful)
+    //     .catchError(
+    //         (e) => _status = AuthExceptionHandler.handleAuthException(e));
+    // return _status;
+  }
 }
-// Future<AuthStatus> resetPassword({required String email}) async {
-//   await _auth
-//       .sendPasswordResetEmail(email: email)
-//       .then((value) => _status = AuthStatus.successful)
-//       .catchError((e) => _status = AuthExceptionHandler.handleAuthException(e));
-//   return _status;
+
+//
+// Future _resetPassword() async {
+//   String? email;
+//   await showDialog(
+//     context: context,
+//     builder: (context) {
+//       return AlertDialog(
+//         actions: [
+//           TextButton(
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//             },
+//             child: const Text('Send'),
+//           ),
+//         ],
+//         content: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           mainAxisSize: MainAxisSize.min,
+//           children: [
+//             const Text('Enter your email'),
+//             const SizedBox(height: 20),
+//             TextFormField(
+//               onChanged: (value) {
+//                 email = value;
+//               },
+//             ),
+//           ],
+//         ),
+//       );
+//     },
+//   );
+//
+//   if (email != null) {
+//     try {
+//       await _auth.sendPasswordResetEmail(email: email!);
+//       ScaffoldSnackbar.of(context).show('Password reset email is sent');
+//     } catch (e) {
+//       ScaffoldSnackbar.of(context).show('Error resetting');
+//     }
+//   }
 // }

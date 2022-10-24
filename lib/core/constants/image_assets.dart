@@ -5,5 +5,6 @@ class ImageAssets {
   static const String hiddenPassword = "${imageRoot}eye-eye-slash-bold.png";
   static const String googleIcon = "${imageRoot}google.png";
   static const String phoneIcon = "${imageRoot}phone.png";
+  static const String shoes = "${imageRoot}shoes.png";
 }
 

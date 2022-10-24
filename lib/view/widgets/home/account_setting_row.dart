@@ -16,8 +16,10 @@ class AccountSettingRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16.0, bottom: 21),
+    return Container(
+      color: AppColor.pink,
+      padding:
+          const EdgeInsets.only(top: 16.0, bottom: 21, left: 37, right: 37),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,

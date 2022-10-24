@@ -22,4 +22,9 @@ class IconAssets {
   static const String signoutIcon = "${iconRoot}sign-out.svg";
   static const String paymentIcon = "${iconRoot}payment.svg";
   static const String shippingIcon = "${iconRoot}shipping.svg";
+  //Category Icons
+  static const String filterIcon = "${iconRoot}filter-icon.svg";
+  static const String searchIcon = "${iconRoot}search-icon.svg";
+  static const String starIcon = "${iconRoot}star-icon.svg";
+  static const String sortIcon = "${iconRoot}sort-icon.svg";
 }

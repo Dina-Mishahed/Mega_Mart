@@ -9,7 +9,7 @@ import 'package:mega_market/view/screens/auth/signin_screen.dart';
 import 'package:mega_market/core/constants/routes.dart';
 import 'package:mega_market/view/screens/auth/signup_screen.dart';
 import 'package:mega_market/view/screens/auth/terms_conditions.dart';
-import 'package:mega_market/view/screens/home_layout.dart';
+import 'package:mega_market/view/screens/home_layout/home_layout.dart';
 import 'package:mega_market/view/screens/onboarding.dart';
 
 

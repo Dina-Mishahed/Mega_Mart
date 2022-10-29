@@ -19,7 +19,13 @@ class SignupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     SignUpControllerImp controller = Get.put(SignUpControllerImp());
     double screenWidth =
-        MediaQuery.of(context).size.width - MediaQuery.of(context).padding.top;
+        MediaQuery
+            .of(context)
+            .size
+            .width - MediaQuery
+            .of(context)
+            .padding
+            .top;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -38,7 +44,10 @@ class SignupPage extends StatelessWidget {
                         )),
                     Text(
                       "Sign up",
-                      style: Theme.of(context).textTheme.headline1,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .headline1,
                     ),
                   ],
                 ),
@@ -102,9 +111,9 @@ class SignupPage extends StatelessWidget {
                                   showFlags: false,
                                   selectorType: PhoneInputSelectorType.DROPDOWN,
                                 ),
-                                autoValidateMode: AutovalidateMode.always,
+                                autoValidateMode: AutovalidateMode.disabled,
                                 selectorTextStyle:
-                                    TextStyle(color: Colors.black),
+                                TextStyle(color: Colors.black),
                                 inputDecoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Enter Your Phone Number",
@@ -137,36 +146,46 @@ class SignupPage extends StatelessWidget {
                             CustomConstText(text: "Password"),
                             GetBuilder<SignUpControllerImp>(
                                 builder: (controller) {
-                              return CustomTextField(
-                                  onSaveFunc: (val) {
-                                    controller.password = val!;
-                                  },
-                                  hintText: "* * * * * *",
-                                  onTapIcon: () {
-                                    controller.showPassword();
-                                  },
-                                  isSecure: controller.isshowpassword,
-                                  valid: (val) => validInput(val!, "password"),
-                                  type: TextInputType.visiblePassword);
-                            }),
+                                  return CustomTextField(
+                                      onSaveFunc: (val) {
+                                        controller.password = val!;
+                                      },
+                                      hintText: "* * * * * *",
+                                      onTapIcon: () {
+                                        controller.showPassword();
+                                      },
+                                      isSecure: controller.isshowpassword,
+                                      valid: (val) =>
+                                          validInput(val!, "password"),
+                                      type: TextInputType.visiblePassword);
+                                }),
                             const SizedBox(
                               height: 14,
                             ),
                             const SizedBox(
-                              height: 34,
+                              height: 14,
                             ),
                             Row(
                               children: [
-                                CustomCheckBox(
-                                  text: "  I agree to ",
-                                  onChandeFun: (value) {},
+                                GetBuilder<SignUpControllerImp>(
+                                  builder: (contr) {
+                                    return CustomCheckBox(
+                                      text: "  I agree to ",
+                                      onChandeFun: (value) {
+                                        //print(value);
+                                        controller.checkTrems();
+                                        print(controller.checkvalue);
+                                      },
+                                      value: controller.checkvalue,
+                                    );
+                                  }
                                 ),
                                 GetBuilder<SignUpControllerImp>(
                                     builder: (controller) {
-                                  return CustomTextButton(
-                                      text: "Terms and conditions".tr,
-                                      funcOnTap: () => controller.terms());
-                                })
+                                      return CustomTextButton(
+                                          text: "Terms and conditions".tr,
+                                          funcOnTap: () => controller.terms());
+                                    })
                               ],
                             ),
                             const SizedBox(
@@ -193,7 +212,6 @@ class SignupPage extends StatelessWidget {
                               text: " Phone Number",
                               icon: ImageAssets.phoneIcon,
                               onPressFun: () {}),
-                          //Spacer(),
                           CustomSignWithPhoneOrEmail(
                               text: " Google account",
                               icon: ImageAssets.googleIcon,
@@ -210,14 +228,17 @@ class SignupPage extends StatelessWidget {
                             const Text("Have an account?"),
                             GetBuilder<SignUpControllerImp>(
                                 builder: (controller) {
-                              return CustomTextButton(
-                                text: " Sign In".tr,
-                                funcOnTap: () => controller.signin(),
-                              );
-                            })
+                                  return CustomTextButton(
+                                    text: " Sign In".tr,
+                                    funcOnTap: () => controller.signin(),
+                                  );
+                                })
                           ],
                         ),
-                      )
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                     ],
                   ),
                 ),

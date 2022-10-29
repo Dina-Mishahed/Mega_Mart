@@ -22,9 +22,8 @@ class ForgetPasswordControllerImp extends ForgetPasswordController {
     var formdata = formstate.currentState;
     formstate.currentState!.save();
     if (formdata!.validate()) {
-      print("val id");
       resetPassword(email: email);
-      Get.offAllNamed(AppRoute.optVerificationCodeEmail);
+      Get.toNamed(AppRoute.signin);
     } else {
       print("Not valid");
     }

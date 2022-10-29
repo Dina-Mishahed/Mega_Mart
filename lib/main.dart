@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,14 +16,14 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp()
-      // DevicePreview(
-      //   enabled: true,
-      //   tools: [
-      //     ...DevicePreview.defaultTools,
-      //   ],
-      //   builder: (context) => MyApp(),
-      // ),
+  runApp(//MyApp()
+      DevicePreview(
+        enabled: true,
+        tools: [
+          ...DevicePreview.defaultTools,
+        ],
+        builder: (context) => MyApp(),
+      ),
       );
 }
 
@@ -66,8 +67,8 @@ class MyApp extends StatelessWidget {
           secondary: AppColor.grey1,
         ),
       ),
-      //initialRoute: "/",
-      initialRoute: AppRoute.home,
+      initialRoute: "/",
+      //initialRoute: AppRoute.signup,
       getPages: routes,
     );
   }

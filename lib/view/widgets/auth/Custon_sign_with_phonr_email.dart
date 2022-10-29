@@ -13,12 +13,13 @@ class CustomSignWithPhoneOrEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width / 2.5;
+    double width = MediaQuery.of(context).size.width / 2.2;
     return Container(
+      alignment: Alignment.center,
       child: TextButton(
         style: TextButton.styleFrom(
             padding:
-                const EdgeInsets.only(right: 20, left: 10, bottom: 8, top: 8),
+                const EdgeInsets.only(right: 12, left: 10, bottom: 8, top: 8),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(6),
                 side: BorderSide(
@@ -29,6 +30,7 @@ class CustomSignWithPhoneOrEmail extends StatelessWidget {
         child: Row(
           children: [
             Image.asset(icon),
+            SizedBox(width: 2,),
             Text(
               text,
               style: TextStyle(

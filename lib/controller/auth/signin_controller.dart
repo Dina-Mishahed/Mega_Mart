@@ -19,17 +19,23 @@ class SignInControllerImp extends SignInController {
   late String emailController, passwordControler;
   bool isshowpassword = true;
   late  Rx<User?> _user ;
+  var rememberMe = false;
 
   showPassword() {
     isshowpassword = !isshowpassword;
     update();
   }
-
+  remember() {
+    rememberMe = !rememberMe;
+    update();
+  }
   @override
   signup() {
-    Get.offAllNamed(AppRoute.signup);
+    Get.toNamed(AppRoute.signup);
   }
-
+  pop() {
+    Get.offNamed(AppRoute.signin);
+  }
   @override
   forgetPassword() {
     Get.offAllNamed(AppRoute.resetPasswordWithEmail);

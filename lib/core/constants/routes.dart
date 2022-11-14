@@ -9,4 +9,5 @@ class AppRoute {
   static const String terms = "/trems";
   static const String resetPasswordWithPhone = "/reset-phone";
   static const String optVerificationCodePhone = "/opt-phone";
+  static const String noInternet = "/no_internet";
 }

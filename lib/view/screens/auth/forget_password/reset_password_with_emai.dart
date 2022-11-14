@@ -84,7 +84,7 @@ class ResetPasswordWithEmail extends StatelessWidget {
                       ),
                       const Text("forget your email?"),
                       const SizedBox(
-                        height: 8,
+                        height: 10,
                       ),
                       CustomTextButton(
                         text: " Send code by SMS",

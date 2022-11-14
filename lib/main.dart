@@ -67,8 +67,8 @@ class MyApp extends StatelessWidget {
           secondary: AppColor.grey1,
         ),
       ),
-      initialRoute: "/",
-      //initialRoute: AppRoute.signup,
+      //initialRoute: "/",
+      initialRoute: AppRoute.noInternet,
       getPages: routes,
     );
   }

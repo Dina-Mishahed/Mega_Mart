@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:mega_market/core/middleware/middleware.dart';
+import 'package:mega_market/view/no_internet/no_internet_view.dart';
 import 'package:mega_market/view/screens/auth/change_password_screen.dart';
 import 'package:mega_market/view/screens/auth/forget_password/reset_password_with_emai.dart';
 import 'package:mega_market/view/screens/auth/forget_password/reset_password_with_sms.dart';
@@ -32,4 +33,6 @@ List<GetPage<dynamic>>? routes = [
       name: AppRoute.optVerificationCodePhone,
       page: () => OTPVerificationWithPhone()),
   GetPage(name: AppRoute.terms, page: () => TermsAndConditions()),
+
+  GetPage(name: AppRoute.noInternet, page: () => NoInternet()),
 ];

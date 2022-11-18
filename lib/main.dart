@@ -6,6 +6,8 @@ import 'package:mega_market/core/constants/color.dart';
 import 'package:mega_market/core/localization/changel_local.dart';
 import 'package:mega_market/core/services/services.dart';
 import 'package:mega_market/routes.dart';
+import 'NetworkBinding/network_binding.dart';
+import 'controller/network_controller.dart';
 import 'core/constants/routes.dart';
 import 'core/localization/translation.dart';
 import 'firebase_options.dart';
@@ -16,14 +18,14 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(//MyApp()
-      DevicePreview(
+  runApp(MyApp()
+      /*DevicePreview(
         enabled: true,
         tools: [
           ...DevicePreview.defaultTools,
         ],
         builder: (context) => MyApp(),
-      ),
+      ),*/
       );
 }
 
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     LocalController controller = Get.put(LocalController());
     return GetMaterialApp(
+      initialBinding: NetworkBinding(),
       translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
       title: 'Mega Market',
@@ -68,7 +71,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       //initialRoute: "/",
-      initialRoute: AppRoute.noInternet,
+      initialRoute: AppRoute.home,
       getPages: routes,
     );
   }

@@ -16,26 +16,23 @@ class NoInternet extends StatelessWidget {
             .of(context)
             .padding
             .top;
-    return SafeArea(
-      child: Scaffold(
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.only(top: screenWidth * 0.35,left: 35,right: 35),
+    return Padding(
+      padding: EdgeInsets.only(top: screenWidth * 0.5,left: 35,right: 35),
 
-          child: Column(
-            children: [
-              Image.asset(ImageAssets.noInternet,),
-              SizedBox(height: 10,),
-              Text("No Internet Connection",style: TextStyle(
-                fontSize: 26,
-                color: AppColor.grey3,
-              ),),
-              Text("Please check your internet connection to continuo Shopping ",style: TextStyle(
-                fontSize: 16,
-                color: AppColor.grey1,
-              ),
-                textAlign: TextAlign.center,
-              ),
+      child: Column(
+        children: [
+          Image.asset(ImageAssets.noInternet,),
+          SizedBox(height: 10,),
+          Text("No Internet Connection",style: TextStyle(
+            fontSize: 26,
+            color: AppColor.grey3,
+          ),),
+          Text("Please check your internet connection to continuo Shopping ",style: TextStyle(
+            fontSize: 16,
+            color: AppColor.grey1,
+          ),
+            textAlign: TextAlign.center,
+          ),
           SizedBox(height: 40,),
           Container(
             width: double.infinity,
@@ -56,11 +53,9 @@ class NoInternet extends StatelessWidget {
               ),
             ),
           ),
-            ],
-          ),
-        ),
+        ],
       ),
-    ));
+    );
   }
 
 }

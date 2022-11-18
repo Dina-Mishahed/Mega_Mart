@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:mega_market/core/constants/color.dart';
 import 'package:mega_market/core/constants/icon_assets.dart';
 import 'package:mega_market/core/constants/routes.dart';
 import 'package:mega_market/view/widgets/auth/custom_const_text.dart';
 
+import '../../../controller/category_controller.dart';
 import '../../../data/models/Category_Model.dart';
-import 'Category_Item.dart';
+import '../../widgets/home/Category_Item.dart';
 
 class CategoryScreen extends StatelessWidget {
   final List<String> names = <String>[
@@ -17,7 +19,7 @@ class CategoryScreen extends StatelessWidget {
     'Homewear',
     'Underwear',
   ];
-  List<CategoryModel> choices = const <CategoryModel>[
+ /* List<CategoryModel> choices = const <CategoryModel>[
     const CategoryModel(title: 'ELETRICITY',image: 'assets/images/google.png' ),
     const CategoryModel(title: 'MOBILE', image: 'assets/images/google.png'),
     const CategoryModel(title: 'ELETRICITY',image: 'assets/images/google.png' ),
@@ -28,7 +30,7 @@ class CategoryScreen extends StatelessWidget {
     const CategoryModel(title: 'MOBILE', image: 'assets/images/google.png'),
     const CategoryModel(title: 'ELETRICITY',image: 'assets/images/google.png' ),
     const CategoryModel(title: 'MOBILE', image: 'assets/images/google.png'),
-  ];//Category_Model.dart
+  ];*///Category_Model.dart
   @override
   Widget build(BuildContext context) {
     double screenWidth =
@@ -62,15 +64,15 @@ class CategoryScreen extends StatelessWidget {
       SizedBox(
         height: 15,
       ),
-      _listViewCategory(),
+      //_listViewCategory(),
       // SizedBox(
       //   height: 16,
       // ),
       _listViewFilterItem(),
-      // Divider(
-      //   height: 5,
-      //   color: AppColor.grey2,
-      // ),
+       Divider(
+         height: 5,
+         color: AppColor.grey2,
+       ),
       Expanded(child: _listViewProduct()),
         ]),
       ),
@@ -191,20 +193,25 @@ class CategoryScreen extends StatelessWidget {
         ),
       );
 
-  Widget _listViewProduct() => GridView(
-    children: List.generate(
-        choices.length, (index) {
-      return Container(
-        child: CategoryItem(choices[index]),
-      );
-    }),
-    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-      maxCrossAxisExtent: 200,
-      childAspectRatio: 3 / 2,
-      crossAxisSpacing: 20,
-      mainAxisSpacing: 20,
-      mainAxisExtent: 250,
-    ),
+  Widget _listViewProduct() => GetBuilder<CategoryController>(
+    builder: (controller) =>
+      controller.loading.value ?  CircularProgressIndicator():
+       GridView(
+        children: List.generate(
+            controller.categoryModel.length, (index) {
+          return Container(
+            child: CategoryItem(controller.categoryModel[index]),
+          );
+        }),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          mainAxisExtent: 270,
+        ),
+      )
+
   );
   
 }

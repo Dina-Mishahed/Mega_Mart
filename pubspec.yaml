@@ -24,6 +24,7 @@ dependencies:
   flutter_svg: ^1.1.5
   connectivity_plus: ^2.3.8
   intl_phone_number_input: ^0.7.1
+  country_picker: ^2.0.17
 
 dev_dependencies:
   flutter_test:

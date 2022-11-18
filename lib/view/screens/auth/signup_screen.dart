@@ -96,6 +96,7 @@ class SignupPage extends StatelessWidget {
                               height: 14,
                             ),
                             CustomConstText(text: "Phone Number"),
+
                             Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
@@ -108,7 +109,7 @@ class SignupPage extends StatelessWidget {
                                   //print(value);
                                 },
                                 selectorConfig: SelectorConfig(
-                                  showFlags: false,
+                                  showFlags: true,
                                   selectorType: PhoneInputSelectorType.DROPDOWN,
                                 ),
                                 autoValidateMode: AutovalidateMode.disabled,

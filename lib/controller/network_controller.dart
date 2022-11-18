@@ -15,7 +15,7 @@ class NetworkingControllerImp extends NetworkingController {
   void onInit() {
     super.onInit();
     initConnectivity();
-    //_connectivitySubscription = _connectivity.onConnectivityChanged.listen((_updateConnectionStatus);
+    _connectivitySubscription = _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
   Future<void> initConnectivity() async {
@@ -32,12 +32,15 @@ class NetworkingControllerImp extends NetworkingController {
     switch (result) {
       case ConnectivityResult.wifi:
         connectionStatues.value = 1;
+        update();
         break;
       case ConnectivityResult.mobile:
         connectionStatues.value = 2;
+        update();
         break;
       case ConnectivityResult.none:
         connectionStatues.value = 0;
+        update();
         break;
       default:
         Get.snackbar("Network Error", "Failed to get network connection");

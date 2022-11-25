@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class CategoryModel {
 
    String? title;
-   String? image;
+   String image = ' ';
    int? price, oldPrice;
    bool? isLoved = false;
 
   CategoryModel(
-   {this.title, this.image, this.price, this.oldPrice, this.isLoved});
+   {this.title, required this.image , this.price, this.oldPrice, this.isLoved});
   CategoryModel.fromJson(Map<dynamic,dynamic> map){
     if(map == null){
       return;

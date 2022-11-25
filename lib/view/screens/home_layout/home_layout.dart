@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            "assets/icons/category_icon.svg",
+            IconAssets.categoryIcon,
             color: controller.currentIndex == 1
                 ? AppColor.primaryColor
                 : AppColor.grey1,
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
             height: 60,
             padding: EdgeInsets.all(18),
             child: SvgPicture.asset(
-              "assets/icons/cart_icon.svg",
+              IconAssets.cartIcon,
             ),
             decoration: BoxDecoration(
               color: controller.currentIndex == 2
@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            "assets/icons/favorit_icon.svg",
+            IconAssets.favoriteIcon,
             color: controller.currentIndex == 3
                 ? AppColor.primaryColor
                 : AppColor.grey1,
@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            "assets/icons/profile_icon.svg",
+            IconAssets.profileIcon,
             color: controller.currentIndex == 4
                 ? AppColor.primaryColor
                 : AppColor.grey1,

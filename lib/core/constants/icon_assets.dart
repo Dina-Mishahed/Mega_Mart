@@ -27,4 +27,12 @@ class IconAssets {
   static const String searchIcon = "${iconRoot}search-icon.svg";
   static const String starIcon = "${iconRoot}star-icon.svg";
   static const String sortIcon = "${iconRoot}sort-icon.svg";
+  static const String cartmartIcon = "${iconRoot}mart_icon.svg";
+  static const String sub = "${iconRoot}icon_minimize.svg";
+  static const String add = "${iconRoot}icon_add.svg";
+
+  static const String love = "${iconRoot}love.svg";
+  static const String share = "${iconRoot}share.svg";
+
+
 }

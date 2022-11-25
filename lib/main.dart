@@ -6,7 +6,7 @@ import 'package:mega_market/core/constants/color.dart';
 import 'package:mega_market/core/localization/changel_local.dart';
 import 'package:mega_market/core/services/services.dart';
 import 'package:mega_market/routes.dart';
-import 'NetworkBinding/network_binding.dart';
+import 'Binding/binding.dart';
 import 'controller/network_controller.dart';
 import 'core/constants/routes.dart';
 import 'core/localization/translation.dart';
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     LocalController controller = Get.put(LocalController());
     return GetMaterialApp(
-      initialBinding: NetworkBinding(),
+      initialBinding: Binding(),
       translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
       title: 'Mega Market',

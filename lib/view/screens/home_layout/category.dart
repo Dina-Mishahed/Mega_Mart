@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:mega_market/core/constants/color.dart';
 import 'package:mega_market/core/constants/icon_assets.dart';
@@ -10,6 +12,7 @@ import 'package:mega_market/view/widgets/auth/custom_const_text.dart';
 import '../../../controller/category_controller.dart';
 import '../../../data/models/Category_Model.dart';
 import '../../widgets/home/Category_Item.dart';
+import 'category_item_screen.dart';
 
 class CategoryScreen extends StatelessWidget {
   final List<String> names = <String>[
@@ -19,18 +22,6 @@ class CategoryScreen extends StatelessWidget {
     'Homewear',
     'Underwear',
   ];
- /* List<CategoryModel> choices = const <CategoryModel>[
-    const CategoryModel(title: 'ELETRICITY',image: 'assets/images/google.png' ),
-    const CategoryModel(title: 'MOBILE', image: 'assets/images/google.png'),
-    const CategoryModel(title: 'ELETRICITY',image: 'assets/images/google.png' ),
-    const CategoryModel(title: 'MOBILE', image: 'assets/images/google.png'),
-    const CategoryModel(title: 'ELETRICITY',image: 'assets/images/google.png' ),
-    const CategoryModel(title: 'MOBILE', image: 'assets/images/google.png'),
-    const CategoryModel(title: 'ELETRICITY',image: 'assets/images/google.png' ),
-    const CategoryModel(title: 'MOBILE', image: 'assets/images/google.png'),
-    const CategoryModel(title: 'ELETRICITY',image: 'assets/images/google.png' ),
-    const CategoryModel(title: 'MOBILE', image: 'assets/images/google.png'),
-  ];*///Category_Model.dart
   @override
   Widget build(BuildContext context) {
     double screenWidth =
@@ -46,20 +37,6 @@ class CategoryScreen extends StatelessWidget {
       right: screenWidth * 0.08,
         ),
         child: Column(children: [
-      Row(
-        children: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.arrow_back_rounded,
-                color: Colors.black,
-              )),
-          Text(
-            "Catalouge",
-            style: Theme.of(context).textTheme.headline1,
-          ),
-        ],
-      ),
       _searchTextFormField(),
       SizedBox(
         height: 15,
@@ -70,9 +47,13 @@ class CategoryScreen extends StatelessWidget {
       // ),
       _listViewFilterItem(),
        Divider(
-         height: 5,
+         height: 30,
+         thickness: 2,
          color: AppColor.grey2,
        ),
+          SizedBox(
+            height: 15,
+          ),
       Expanded(child: _listViewProduct()),
         ]),
       ),
@@ -132,33 +113,33 @@ class CategoryScreen extends StatelessWidget {
         ],
       );
 
-  Widget _listViewCategory() => Container(
-        height: 70,
-        child: ListView.builder(
-          itemCount: names.length,
-          itemBuilder: (context, index) {
-            return Column(
-              children: [
-                Container(
-                  width: 80,
-                  decoration: BoxDecoration(
-                    //borderRadius: BorderRadius.circular(50),
-                    color: Colors.white,
-                  ),
-                  child: Center(child: SvgPicture.asset(IconAssets.filterIcon)),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  names[index],
-                ),
-              ],
-            );
-          },
-          scrollDirection: Axis.horizontal,
-        ),
-      );
+  // Widget _listViewCategory() => Container(
+  //       height: 70,
+  //       child: ListView.builder(
+  //         itemCount: names.length,
+  //         itemBuilder: (context, index) {
+  //           return Column(
+  //             children: [
+  //               Container(
+  //                 width: 80,
+  //                 decoration: BoxDecoration(
+  //                   //borderRadius: BorderRadius.circular(50),
+  //                   color: Colors.white,
+  //                 ),
+  //                 child: Center(child: SvgPicture.asset(IconAssets.filterIcon)),
+  //               ),
+  //               const SizedBox(
+  //                 height: 16,
+  //               ),
+  //               Text(
+  //                 names[index],
+  //               ),
+  //             ],
+  //           );
+  //         },
+  //         scrollDirection: Axis.horizontal,
+  //       ),
+  //     );
 
   Widget _listViewFilterItem() => Container(
         height: 45,
@@ -194,13 +175,19 @@ class CategoryScreen extends StatelessWidget {
       );
 
   Widget _listViewProduct() => GetBuilder<CategoryController>(
+    init: Get.find<CategoryController>(),
     builder: (controller) =>
-      controller.loading.value ?  CircularProgressIndicator():
+      controller.loading.value ?  Center(child: CircularProgressIndicator()):
        GridView(
         children: List.generate(
             controller.categoryModel.length, (index) {
-          return Container(
-            child: CategoryItem(controller.categoryModel[index]),
+          return GestureDetector(
+            onTap: (){
+              Get.to(ItemScreen(controller.categoryModel[index]));
+            },
+            child: Container(
+              child: CategoryItem(controller.categoryModel[index]),
+            ),
           );
         }),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

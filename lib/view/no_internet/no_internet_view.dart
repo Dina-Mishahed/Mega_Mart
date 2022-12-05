@@ -6,7 +6,9 @@ import '../../core/constants/image_assets.dart';
 import '../widgets/onboarding/explore_button.dart';
 
 class NoInternet extends StatelessWidget {
+
   @override
+
   Widget build(BuildContext context) {
     double screenWidth =
         MediaQuery
@@ -27,7 +29,7 @@ class NoInternet extends StatelessWidget {
             fontSize: 26,
             color: AppColor.grey3,
           ),),
-          Text("Please check your internet connection to continuo Shopping ",style: TextStyle(
+          Text("Please check your internet connection to continue Shopping ",style: TextStyle(
             fontSize: 16,
             color: AppColor.grey1,
           ),

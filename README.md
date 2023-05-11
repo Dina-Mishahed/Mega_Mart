@@ -33,4 +33,3 @@ This project is a e-Commerce mobile application built using Flutter framework. I
 ![onBoarding](https://github.com/Dina-Mishahed/Mega_Mart/assets/53543119/5abe2318-4812-4d9e-adcd-b6f19f138190)
 ![changePassword](https://github.com/Dina-Mishahed/Mega_Mart/assets/53543119/e878b182-b437-4b15-a97b-307f74c4848a)
 ![filter](https://github.com/Dina-Mishahed/Mega_Mart/assets/53543119/096e0b65-b96c-4e0b-9ddd-7f55b8b4c9d9)
-![item](https://github.com/Dina-Mishahed/Mega_Mart/assets/53543119/52ab7ec4-62b5-4c2e-9687-04c02f2f8733)
